@@ -1,11 +1,11 @@
 {
-  "name": "Dynamic-Mailer",
+  "name": "dynamic-mailer",
   "version": "1.0.0",
-  "description": "A project where user can send mails by calling endpoint",
+  "description": "A project where users can send mails by calling an endpoint",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "author": "razzan-X",
   "license": "ISC",
@@ -14,9 +14,15 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
     "http-msgs": "^1.0.9",
-    "nodemailer": "^6.7.2"
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
